@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>Foto Evento</title>
+<meta name="description" content="Foto Evento">
+<meta property="og:title" content="Foto Evento">
+<meta property="og:description" content="Foto Evento">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://taon-supabasesistemas.5gq74s.easypanel.host/storage/v1/object/public/theme/config/social-preview">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Foto Evento">
+<meta name="twitter:description" content="Foto Evento">
+<meta name="twitter:image" content="https://taon-supabasesistemas.5gq74s.easypanel.host/storage/v1/object/public/theme/config/social-preview">
+<link id="siteFavicon" rel="icon" href="">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#f1f5f9;color:#0f172a}
+button,input,select{font:inherit}
+button{border:0;border-radius:12px;padding:12px 15px;font-weight:700;cursor:pointer}
+.hidden{display:none!important}
+.top{height:62px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;padding:0 14px;position:sticky;top:0;z-index:30}
+.brand{font-size:17px;font-weight:900;display:flex;align-items:center;gap:9px}
+.brand img{width:38px;height:38px;object-fit:contain;border-radius:9px}
+.badge{font-size:11px;font-weight:900;border-radius:999px;padding:8px 11px;background:#fee2e2;color:#991b1b}
+.badge.ok{background:#dcfce7;color:#166534}.icon-badge{width:34px;height:34px;padding:0;display:flex;align-items:center;justify-content:center;font-size:19px}
+main{max-width:1100px;margin:auto;padding:12px 12px 90px}
+.view{display:none}.view.active{display:block}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:15px;margin-bottom:12px;box-shadow:0 5px 20px rgba(15,23,42,.05)}
+h1,h2,h3{margin:0 0 9px}.muted{font-size:13px;color:#64748b}
+.btn-primary{background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff}
+.btn-light{background:#eef2ff;color:#3730a3}.btn-gray{background:#e2e8f0;color:#334155}.btn-red{background:#fee2e2;color:#991b1b}
+label{display:block;font-size:12px;font-weight:800;margin:10px 0 5px}
+input,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:11px;background:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.nav{position:fixed;bottom:0;left:0;right:0;height:76px;background:rgba(255,255,255,.97);border-top:1px solid #dbe1e8;display:grid;grid-template-columns:repeat(3,1fr);z-index:50;padding-bottom:env(safe-area-inset-bottom)}
+.nav button{background:transparent;color:#64748b;border-radius:0;padding:5px}.nav button.active{color:#6d28d9;background:#f5f3ff}.nav b{display:block;font-size:24px;line-height:27px}.nav span{font-size:11px}
+.stage{height:calc(100vh - 166px);min-height:380px;border-radius:22px;position:relative;overflow:hidden;background:#cbd5e1 center/cover no-repeat;display:flex;align-items:center;justify-content:center}
+.stage:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.08)}
+.slide{position:relative;z-index:2;max-width:92%;max-height:88%;object-fit:contain;border-radius:10px;box-shadow:0 12px 35px rgba(0,0,0,.3)}
+.panel-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:1;pointer-events:none}
+
+.empty{position:relative;z-index:3;color:#fff;text-align:center;font-weight:700}
+.text-layer{position:absolute;inset:0;z-index:5;pointer-events:none}
+.stage-text{position:absolute;white-space:pre-wrap;text-shadow:0 3px 12px rgba(0,0,0,.5);font-weight:900;max-width:90%}
+.logo{position:absolute;z-index:5;max-width:180px;max-height:90px;object-fit:contain}
+.camera-box{background:#050505;border-radius:18px;overflow:hidden;aspect-ratio:3/4;max-height:68vh;display:flex;align-items:center;justify-content:center}
+video{width:100%;height:100%;object-fit:contain}
+.camera-actions{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;margin-top:9px}
+.shutter{width:65px;height:65px;border-radius:50%;padding:0;background:#fff;border:7px solid #cbd5e1;justify-self:center}
+.frames{display:flex;gap:9px;overflow-x:auto;padding:4px 1px}
+.frame{min-width:94px;border:2px solid #e2e8f0;background:#fff;border-radius:12px;padding:5px}
+.frame.selected{border-color:#7c3aed;box-shadow:0 0 0 3px #ede9fe}
+.frame img{width:80px;height:105px;object-fit:contain;display:block;margin:auto}
+.frame small{display:block;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.preview{width:min(100%,550px);margin:10px auto 0;position:relative;background:transparent;border-radius:17px;overflow:hidden;aspect-ratio:4/3}
+.preview #photoPreview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;z-index:1}
+.preview .over{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;object-position:center;pointer-events:none;z-index:2;display:block}
+.notice{padding:11px;border-radius:11px;background:#fef3c7;color:#92400e;font-size:13px}
+.success{padding:11px;border-radius:11px;background:#dcfce7;color:#166534;font-size:13px}
+.modal{position:fixed;inset:0;background:rgba(2,6,23,.68);display:none;align-items:center;justify-content:center;padding:18px;z-index:100}
+.modal.open{display:flex}.modal .card{width:min(420px,100%);margin:0}
+.album-viewer{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:20px;z-index:110}.album-viewer.open{display:flex}.album-viewer img{max-width:96vw;max-height:88vh;object-fit:contain;border-radius:10px}.album-viewer .viewer-close{position:absolute;right:16px;top:14px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:24px}.album-viewer .viewer-title{position:absolute;left:16px;top:18px;color:#fff;font-size:14px;background:rgba(0,0,0,.35);padding:7px 10px;border-radius:8px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:200;background:#111827;color:#fff;border-radius:999px;padding:11px 17px;display:none;max-width:90%;text-align:center}.toast.show{display:block}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}.album-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.album-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:8px;box-shadow:0 2px 8px rgba(15,23,42,.06)}.album-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;display:block}.album-card .album-actions{display:flex;gap:6px;margin-top:7px}.album-card .album-actions button{flex:1;padding:8px 6px;font-size:11px}.album-empty{padding:24px;text-align:center;color:#64748b;background:#f8fafc;border-radius:12px}@media(min-width:700px){.album-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:700px){.gallery{grid-template-columns:repeat(5,1fr)}}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.text-editor{background:#f8fafc;border-radius:13px;padding:12px;margin-top:9px;border:1px solid #e2e8f0}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><img id="brandLogo" class="hidden"><span id="brandTitle">Foto Evento</span></div>
+  <div id="camBadge" class="badge">CÂMERA BLOQUEADA</div>
+</header>
+
+<main>
+<section id="panelView" class="view active">
+  <div id="stage" class="stage">
+    <button id="musicToggle" title="Silenciar música" aria-label="Silenciar música"
+      style="position:absolute;right:12px;bottom:12px;z-index:20;width:48px;height:48px;border-radius:50%;padding:0;background:rgba(0,0,0,.58);color:#fff;font-size:23px;backdrop-filter:blur(6px)">🔊</button>
+    <div id="musicHint" style="position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:20;background:rgba(0,0,0,.58);color:#fff;padding:8px 12px;border-radius:999px;font-size:11px;display:none;white-space:nowrap">Toque na tela para iniciar a música</div>
+    <div id="emptyPanel" class="empty">Nenhuma foto salva ainda.</div>
+    <img id="slide" class="slide hidden">
+    <img id="panelLogo" class="logo hidden">
+    <img id="panelLogoBottom" class="logo hidden">
+    <div id="textLayer" class="text-layer"></div>
+  </div>
+</section>
+
+<section id="albumView" class="view">
+  <div class="card">
+    <div class="row"><div><h2>📸 Álbum</h2><div class="muted">Todas as fotos que aparecem no painel ficam disponíveis aqui.</div></div><button id="refreshAlbum" class="btn-light">↻ Atualizar</button></div>
+  </div>
+  <div class="card">
+    <div id="albumGrid" class="album-grid"></div>
+  </div>
+</section>
+
+<section id="cameraView" class="view">
+  <div class="card">
+    <div class="row"><div><h2>📷 Câmera</h2><div class="muted">Tire uma foto ou escolha uma imagem.</div></div><button id="startCamera" class="btn-light">Abrir câmera</button></div>
+    <div id="blockedNotice" class="notice" style="margin-top:10px">A câmera está bloqueada para convidados. O administrador pode liberar.</div>
+  </div>
+  <div class="card">
+    <div class="camera-box"><video id="video" autoplay playsinline muted></video></div>
+    <div class="camera-actions">
+      <button id="galleryBtn" class="btn-gray">🖼️ Galeria</button>
+      <button id="shotBtn" class="shutter" aria-label="Tirar foto"></button>
+      <button id="retryBtn" class="btn-gray">↺ Refazer</button>
+    </div>
+    <input id="photoFile" type="file" accept="image/*" class="hidden">
+  </div>
+  <div id="photoCard" class="card hidden">
+    <h3>Pré-visualização da foto</h3>
+    <div id="preview" class="preview hidden"><img id="photoPreview"></div>
+    <button id="saveBtn" class="btn-primary" style="width:100%;margin-top:10px">💾 SALVAR FOTO</button>
+  </div>
+</section>
+
+<section id="configView" class="view">
+  <div class="card">
+    <h2>⚙️ Configuração</h2>
+    <div class="muted">Área do administrador.</div>
+    <button id="loginBtn" class="btn-primary" style="margin-top:10px">Entrar como ADMIN</button>
+  </div>
+
+  <div id="adminPanel" class="hidden">
+    <div class="card">
+      <h3>🔐 Acesso da câmera</h3>
+      <button id="toggleGuest" class="btn-light" style="width:100%">Liberar convidados</button>
+      <div id="guestState" class="muted" style="margin-top:7px"></div>
+    </div>
+
+    <div class="card">
+      <h3>🔒 Segurança do álbum</h3>
+      <div class="muted">Esta senha controla quem pode abrir a foto em tamanho grande e fazer download.</div>
+      <label>Senha do álbum</label><input id="albumPassConfig" type="password" autocomplete="new-password" placeholder="Digite a senha">
+      <button id="saveAlbumPassword" class="btn-primary" style="margin-top:8px;width:100%">Salvar senha do álbum</button>
+      <div class="muted" style="margin-top:7px">A senha do álbum é independente do login do administrador.</div>
+    </div>
+
+    <div class="card">
+      <h3>🖼️ Molduras</h3>
+      <input id="framesUpload" type="file" accept="image/png,image/webp,image/jpeg" multiple>
+      <button id="addFrames" class="btn-primary" style="margin-top:8px;width:100%">Adicionar molduras</button>
+      <div class="muted" style="margin-top:8px">Selecione uma moldura para usar no painel principal. Ela ficará fixa atrás das fotos salvas, como um fundo.</div>
+      <div id="adminFrameList" class="frames" style="margin-top:8px"></div>
+      <div id="activeFrameState" class="success" style="margin-top:8px">Nenhuma moldura selecionada.</div>
+    </div>
+
+    <div class="card">
+      <h3>☁️ Supabase</h3>
+      <div class="muted">Opcional para começar. Sem Supabase, o sistema funciona neste navegador usando armazenamento local. Para publicar e compartilhar fotos entre celulares, configure o Supabase.</div>
+      <label>URL</label><input id="sbUrl" placeholder="https://xxxx.supabase.co">
+      <label>Anon Key</label><input id="sbKey" type="password">
+      <button id="connectSb" class="btn-primary" style="margin-top:8px;width:100%">Conectar Supabase</button>
+      <div id="sbState" class="success" style="margin-top:7px">Supabase será configurado automaticamente.</div><div class="muted" style="margin-top:7px">Para salvar a configuração global, o Storage precisa permitir leitura e gravação do arquivo config/evento.json.</div>
+    </div>
+
+    <div class="card">
+      <h3>🎵 Painel</h3>
+      <label>Tempo entre fotos (segundos)</label><input id="interval" type="number" min="1" value="5">
+      <label>Música</label><input id="musicFile" type="file" accept="audio/*">
+      <button id="musicBtn" class="btn-light" style="margin-top:8px;width:100%">Usar música</button>
+      <button id="deleteMusicBtn" class="btn-light" style="margin-top:8px;width:100%;color:#b91c1c;border-color:#fecaca">🗑️ Excluir música</button>
+      <div class="muted" style="margin-top:8px">A música tenta iniciar automaticamente. Se o navegador bloquear áudio com som, o primeiro toque na tela libera o som. No painel existe um botão 🔊/🔇.</div>
+    </div>
+
+    <div class="card">
+      <h3>🎨 Tema</h3>
+      <label>Imagem de fundo</label><input id="bgFile" type="file" accept="image/*">
+      <label>Logo principal (upload)</label><input id="logoFile" type="file" accept="image/*">
+      <label>Tamanho da logo principal (px)</label><input id="brandLogoSize" type="number" min="20" max="180" value="38">
+      <div class="grid2">
+        <div><label>Logo 1 superior</label><input id="logoTopFile" type="file" accept="image/*"></div>
+        <div><label>Tamanho (px)</label><input id="logoTopSize" type="number" min="20" max="180" value="38"></div>
+      </div>
+      <label>Posição da logo 1</label><select id="logoTopPos"></select>
+      <div class="grid2">
+        <div><label>Logo 2 inferior</label><input id="logoBottomFile" type="file" accept="image/*"></div>
+        <div><label>Tamanho (px)</label><input id="logoBottomSize" type="number" min="20" max="180" value="38"></div>
+      </div>
+      <label>Posição da logo 2</label><select id="logoBottomPos"></select>
+      <div class="grid2">
+        <div><label>Cor principal</label><input id="primary" type="color" value="#7c3aed"></div>
+        <div><label>Cor destaque</label><input id="accent" type="color" value="#ec4899"></div>
+      </div>
+      <hr>
+      <h3>🌐 Ícone e compartilhamento</h3>
+      <label>Ícone do site / favicon</label><input id="faviconFile" type="file" accept="image/png,image/jpeg,image/webp,image/x-icon,.ico">
+      <div class="muted" style="margin-top:6px">Use uma imagem quadrada para o ícone que aparece na aba do navegador.</div>
+      <label style="margin-top:10px">Miniatura para redes sociais</label><input id="socialImageFile" type="file" accept="image/png,image/jpeg,image/webp">
+      <div class="muted" style="margin-top:6px">Imagem usada quando o link for compartilhado. Com Supabase conectado, ela é enviada para um endereço público fixo para que WhatsApp/Facebook e outros robôs consigam encontrá-la mesmo sem executar JavaScript.</div>
+      <label style="margin-top:10px">Texto / título do compartilhamento</label><input id="metaTitle" placeholder="Texto que aparecerá ao compartilhar o link">
+      <label>Descrição do compartilhamento</label><textarea id="metaDescription" rows="3" placeholder="Descrição que aparecerá nos metadados das redes sociais"></textarea>
+      <label>Título</label><input id="title" placeholder="Título opcional">
+      <div class="grid2">
+        <div><label>Fonte</label><select id="font"><option>Arial</option><option>Georgia</option><option>Verdana</option><option>Trebuchet MS</option><option>Courier New</option></select></div>
+        <div><label>Cor do título</label><input id="titleColor" type="color" value="#ffffff"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Tamanho do título</label><input id="titleSize" type="number" min="10" max="120" value="36"></div>
+        <div><label>Logos no painel</label><select id="logoMode"><option value="both">2 logos: superior direito + inferior esquerdo</option><option value="top">1 logo: superior direito</option><option value="bottom">1 logo: inferior esquerdo</option></select></div>
+      </div>
+      <label>Posição do título</label><select id="titlePos"></select>
+      <button id="saveTheme" class="btn-primary" style="margin-top:10px;width:100%">Salvar tema</button>
+      <hr>
+      <h3>Adicionar textos</h3>
+      <button id="newText" class="btn-light">＋ Novo texto</button>
+      <div id="textEditors"></div>
+    </div>
+
+    <div class="card">
+      <div class="row"><h3>📸 Fotos salvas</h3><button id="clearPhotos" class="btn-red">Apagar todas</button></div>
+      <div id="gallery" class="gallery" style="margin-top:8px"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav class="nav">
+ <button class="active" data-v="panelView"><b>🖥️</b><span>Painel</span></button>
+ <button data-v="cameraView"><b>📷</b><span>Câmera</span></button>
+ <button data-v="albumView"><b>🖼️</b><span>Álbum</span></button>
+ <button data-v="configView"><b>⚙️</b><span>Configuração</span></button>
+</nav>
+
+<div id="loginModal" class="modal"><div class="card">
+<h3>Login administrativo</h3><label>Usuário</label><input id="user" value="ADMIN"><label>Senha</label><input id="pass" type="password">
+<div class="grid2" style="margin-top:10px"><button id="cancelLogin" class="btn-gray">Cancelar</button><button id="doLogin" class="btn-primary">Entrar</button></div>
+</div></div>
+
+<div id="unlockModal" class="modal"><div class="card">
+<h3>🔓 Liberar câmera</h3><div class="muted">Digite 123456789 para liberar.</div><label>Senha</label><input id="unlock" type="password">
+<div class="grid2" style="margin-top:10px"><button id="cancelUnlock" class="btn-gray">Cancelar</button><button id="doUnlock" class="btn-primary">Liberar</button></div>
+</div></div>
+
+<div id="albumPasswordModal" class="modal"><div class="card">
+<h3>🔒 Acesso do administrador</h3><div class="muted">Para visualizar a foto em tamanho grande ou baixar, digite a senha do administrador.</div><label>Senha</label><input id="albumPassword" type="password" autocomplete="off" onkeydown="if(event.key==='Enter')confirmAlbumAccess()">
+<div id="albumPasswordError" style="color:#b91c1c;font-size:12px;margin-top:6px;min-height:16px"></div>
+<div class="grid2" style="margin-top:10px"><button id="cancelAlbumPassword" class="btn-gray">Cancelar</button><button id="confirmAlbumPassword" class="btn-primary">Continuar</button></div>
+</div></div>
+<div id="albumViewer" class="album-viewer" onclick="if(event.target===this)closeAlbumViewer()">
+<div id="albumViewerTitle" class="viewer-title"></div><button class="viewer-close" onclick="closeAlbumViewer()" aria-label="Fechar">✕</button><img id="albumViewerImage" alt="Foto em tamanho grande">
+</div>
+<div id="toast" class="toast"></div>
+<audio id="audio" loop></audio>
+
+<script>
+/* =========================================================
+   FOTO EVENTO V2
+   Funciona sem Supabase no modo local.
+   Supabase é ativado no painel administrativo.
+   ========================================================= */
+
+const ADMIN_USER="ADMIN", ADMIN_PASS="123456789", UNLOCK_PASS="123456789";
+const SUPABASE_URL='https://wtujaawfxmfqgvvwkjce.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_Tgu_ZkuqGcDdRxeisegrQQ_DU1-QKPx';
+const DB_KEY="FOTO_EVENTO_V2";
+// Configuração global: fica no bucket PUBLICO "theme".
+const CONFIG_BUCKET="theme";
+const CONFIG_PATH="config/evento.json";
+let state=JSON.parse(localStorage.getItem(DB_KEY)||"null")||{
+  guest:false, interval:5, frames:[], activeFrame:null, photos:[],
+  theme:{title:"Foto Evento",titleSize:36,brandLogoSize:38,logoTopSize:38,logoBottomSize:38,logoTopPos:"tr",logoBottomPos:"bl",logoMode:"both",font:"Arial",titleColor:"#ffffff",titlePos:"bc",primary:"#7c3aed",accent:"#ec4899",bg:null,logo:null,logoTop:null,logoBottom:null,texts:[],favicon:null,socialImage:null,metaTitle:"Foto Evento",metaDescription:"Foto Evento"},
+  albumPassword:"123456789",
+  music:null
+};
+let stream=null, photo=null, selectedFrame=null, transform={scale:1,x:0,y:0}, admin=false, sb=null, slideTimer=null, slideIndex=0, remoteConfigStamp=null, remoteConfigTimer=null;
+
+const $=x=>document.getElementById(x);
+const POS={tl:"Canto superior esquerdo",tc:"Superior central",tr:"Canto superior direito",ml:"Meio esquerdo",mc:"Centralizado",mr:"Meio direito",bl:"Canto inferior esquerdo",bc:"Inferior central",br:"Canto inferior direito"};
+$("titlePos").innerHTML=Object.entries(POS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+$("logoTopPos").innerHTML=Object.entries(POS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+$("logoBottomPos").innerHTML=Object.entries(POS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+
+function saveLocal(){localStorage.setItem(DB_KEY,JSON.stringify(state))}
+function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2500)}
+function fileData(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+function position(el,pos){
+  el.style.top=el.style.right=el.style.bottom=el.style.left="auto";el.style.transform="";
+  const m={tl:["0","auto","auto","0"],tc:["0","auto","auto","50%"],tr:["0","0","auto","auto"],ml:["50%","auto","auto","0"],mc:["50%","auto","auto","50%"],mr:["50%","0","auto","auto"],bl:["auto","auto","0","0"],bc:["auto","auto","0","50%"],br:["auto","0","0","auto"]}[pos]||["auto","auto","0","50%"];
+  [el.style.top,el.style.right,el.style.bottom,el.style.left]=m;
+  if(["tc","bc"].includes(pos))el.style.transform="translateX(-50%)";
+  if(["ml","mr"].includes(pos))el.style.transform="translateY(-50%)";
+  if(pos==="mc")el.style.transform="translate(-50%,-50%)";
+}
+async function uploadThemeAsset(file, path){
+  if(!sb || !file) return null;
+  const up=await sb.storage.from(CONFIG_BUCKET).upload(path,file,{
+    contentType:file.type||"application/octet-stream",
+    upsert:true,
+    cacheControl:"0"
+  });
+  if(up.error) throw up.error;
+  return `${SUPABASE_URL}/storage/v1/object/public/${CONFIG_BUCKET}/${path}?v=${Date.now()}`;
+}
+
+function themeAssetUrl(path){
+  if(!path) return "";
+  return `${SUPABASE_URL}/storage/v1/object/public/${CONFIG_BUCKET}/${path}`;
+}
+
+function applyTheme(){
+  const t=state.theme||{};
+  const metaTitle=t.metaTitle||t.title||"Foto Evento";
+  const metaDescription=t.metaDescription||"";
+  document.title=metaTitle;
+  const setMeta=(selector,content)=>{
+    const el=document.querySelector(selector);
+    if(el)el.setAttribute("content",content||"");
+  };
+  setMeta('meta[name="description"]',metaDescription);
+  setMeta('meta[property="og:title"]',metaTitle);
+  setMeta('meta[property="og:description"]',metaDescription);
+  setMeta('meta[property="og:image"]',t.socialImage||themeAssetUrl('config/social-preview'));
+  setMeta('meta[name="twitter:title"]',metaTitle);
+  setMeta('meta[name="twitter:description"]',metaDescription);
+  setMeta('meta[name="twitter:image"]',t.socialImage||themeAssetUrl('config/social-preview'));
+  const fav=$("siteFavicon");
+  if(fav){fav.href=t.favicon||themeAssetUrl("config/favicon");fav.type="image/png";}
+  document.documentElement.style.setProperty("--primary",t.primary||"#7c3aed");
+  document.documentElement.style.setProperty("--accent",t.accent||"#ec4899");
+  $("brandTitle").textContent=t.title||"Foto Evento";
+  $("brandTitle").style.fontFamily=t.font||"Arial";
+  $("brandTitle").style.fontSize=Math.max(10,Math.min(120,+t.titleSize||36))+"px";
+  $("stage").style.backgroundImage=t.bg?`url(${t.bg})`:"none";
+  $("stage").style.backgroundColor="#cbd5e1";
+  const principalLogo=t.logo||"";
+  const topLogo=t.logoTop||principalLogo;
+  const bottomLogo=t.logoBottom||principalLogo;
+  $("brandLogo").src=principalLogo;
+  $("brandLogo").classList.toggle("hidden",!principalLogo);
+  const logoSize=Math.max(20,Math.min(180,+t.brandLogoSize||38));
+  $("brandLogo").style.width=logoSize+"px";
+  $("brandLogo").style.height=logoSize+"px";
+  $("panelLogo").src=topLogo;
+  $("panelLogoBottom").src=bottomLogo;
+  const logoMode=t.logoMode||"both";
+  $("panelLogo").classList.toggle("hidden",!topLogo || logoMode==="bottom");
+  $("panelLogoBottom").classList.toggle("hidden",!bottomLogo || logoMode==="top");
+  const topSize=Math.max(20,Math.min(180,+t.logoTopSize||38));
+  const bottomSize=Math.max(20,Math.min(180,+t.logoBottomSize||38));
+  $("panelLogo").style.width=topSize+"px";$("panelLogo").style.height=topSize+"px";
+  $("panelLogoBottom").style.width=bottomSize+"px";$("panelLogoBottom").style.height=bottomSize+"px";
+  position($("panelLogo"),t.logoTopPos||"tr");
+  position($("panelLogoBottom"),t.logoBottomPos||"bl");
+  $("textLayer").innerHTML="";
+  (t.texts||[]).forEach(x=>{
+    const d=document.createElement("div");d.className="stage-text";d.textContent=x.text;d.style.fontFamily=x.font||"Arial";d.style.fontSize=(x.size||28)+"px";d.style.color=x.color||"#fff";position(d,x.pos||"bc");$("textLayer").appendChild(d)
+  });
+  $("interval").value=state.interval||5;
+  $("primary").value=t.primary||"#7c3aed";$("accent").value=t.accent||"#ec4899";$("title").value=t.title||"";
+  $("font").value=t.font||"Arial";$("titleColor").value=t.titleColor||"#fff";$("titlePos").value=t.titlePos||"bc";$("titleSize").value=t.titleSize||36;$("brandLogoSize").value=t.brandLogoSize||38;$("logoTopSize").value=t.logoTopSize||38;$("logoBottomSize").value=t.logoBottomSize||38;$("logoTopPos").value=t.logoTopPos||"tr";$("logoBottomPos").value=t.logoBottomPos||"bl";$("logoMode").value=t.logoMode||"both";
+  renderTextEditors();renderPanel();renderFrames();renderAdminFrames();renderGallery();renderAlbum();setBadge()
+}
+function setBadge(){
+  $("camBadge").textContent=state.guest?"🔓":"🔒";
+  $("camBadge").title=state.guest?"Câmera liberada":"Câmera bloqueada";
+  $("camBadge").setAttribute("aria-label",state.guest?"Câmera liberada":"Câmera bloqueada");
+  $("camBadge").className="badge icon-badge"+(state.guest?" ok":"");
+  $("blockedNotice").classList.toggle("hidden",state.guest||admin);
+  $("guestState").textContent=state.guest?"Qualquer pessoa com o link pode fotografar e salvar.":"Somente o administrador pode fotografar e salvar.";
+  $("toggleGuest").textContent=state.guest?"🔒 Bloquear convidados":"🔓 Liberar convidados";
+}
+function renderPanel(){
+  const has=state.photos.length>0;
+  $("emptyPanel").classList.toggle("hidden",has);
+  $("slide").classList.toggle("hidden",!has);
+
+  // A moldura escolhida pelo administrador fica fixa no painel,
+  // atrás da foto, funcionando como um fundo/overlay permanente.
+  let panelFrame=$("panelFrame");
+  if(!panelFrame){
+    panelFrame=document.createElement("img");
+    panelFrame.id="panelFrame";
+    panelFrame.className="panel-frame";
+    $("stage").insertBefore(panelFrame,$("slide"));
+  }
+  if(state.activeFrame){
+    panelFrame.src=state.activeFrame.data;
+    panelFrame.classList.remove("hidden");
+  }else{
+    panelFrame.classList.add("hidden");
+  }
+
+  if(has){
+    $("slide").src=state.photos[slideIndex%state.photos.length].data;
+  }
+  clearInterval(slideTimer);
+  if(has)slideTimer=setInterval(()=>{
+    slideIndex=(slideIndex+1)%state.photos.length;
+    $("slide").src=state.photos[slideIndex].data;
+  },Math.max(1,state.interval)*1000);
+}
+function renderFrames(){
+  // Molduras são exclusivas da área administrativa.
+}
+function renderAdminFrames(){
+  $("adminFrameList").innerHTML=state.frames.map((f,i)=>{
+    const active=state.activeFrame && state.activeFrame.id===f.id;
+    return `<div class="frame ${active?"selected":""}" data-admin-frame="${i}" style="cursor:pointer">
+      <img src="${f.data}">
+      <small>${f.name}</small>
+      <button class="btn-light" style="padding:6px;font-size:10px;margin-top:4px;width:100%">${active?"✓ EM USO":"Usar no painel"}</button>
+      <button class="btn-red" style="padding:6px;font-size:10px;margin-top:4px;width:100%" onclick="event.stopPropagation();removeFrame(${i})">Excluir</button>
+    </div>`;
+  }).join("") || "<div class='muted'>Nenhuma moldura cadastrada.</div>";
+
+  document.querySelectorAll("[data-admin-frame]").forEach(el=>{
+    el.onclick=async()=>{
+      const f=state.frames[+el.dataset.adminFrame];
+      state.activeFrame={id:f.id,name:f.name,data:f.data,path:f.path||null,url:f.url||null};
+      saveLocal();
+      applyTheme();
+      try{
+        await syncAdminConfigToSupabase();
+        toast("Moldura selecionada e configuração salva.");
+      }catch(e){
+        console.warn("Não foi possível sincronizar a moldura:",e);
+        toast("Moldura aplicada localmente, mas não foi possível salvar globalmente.");
+      }
+    };
+  });
+
+  $("activeFrameState").textContent=state.activeFrame
+    ? "Moldura ativa: "+state.activeFrame.name
+    : "Nenhuma moldura selecionada.";
+}
+function renderGallery(){
+  $("gallery").innerHTML=state.photos.map((p,i)=>`<div><img src="${p.data}"><button class="btn-red" style="width:100%;padding:7px;font-size:10px;margin-top:3px" onclick="removePhoto(${i})">Excluir</button></div>`).join("")||"<div class='muted'>Nenhuma foto.</div>"
+}
+function renderAlbum(){
+  const grid=$("albumGrid");
+  if(!grid)return;
+  if(!state.photos.length){
+    grid.innerHTML="<div class='album-empty' style='grid-column:1/-1'>📷 Nenhuma foto no álbum ainda.</div>";
+    return;
+  }
+  grid.innerHTML=state.photos.map((p,i)=>{
+    const name=`foto_${String(i+1).padStart(3,"0")}.jpg`;
+    return `<div class="album-card">
+      <img src="${p.data}" loading="lazy" alt="Miniatura da foto ${i+1}" onclick="requestAlbumAccess(${i},'view')" style="cursor:pointer" title="Visualizar em tamanho grande">
+      <div class="album-actions"><button class="btn-primary" onclick="requestAlbumAccess(${i},'download')">⬇️ Download</button></div>
+    </div>`;
+  }).join("");
+}
+
+function requestAlbumAccess(i, action){
+  const p=state.photos[i];
+  if(!p||!p.data)return;
+  const modal=$("albumPasswordModal");
+  $("albumPassword").value="";
+  $("albumPasswordError").textContent="";
+  modal.classList.add("open");
+  $("albumPassword").focus();
+  modal.dataset.photoIndex=String(i);
+  modal.dataset.action=action;
+}
+
+async function confirmAlbumAccess(){
+  const modal=$("albumPasswordModal");
+  const pass=$("albumPassword").value;
+  if(pass!==(state.albumPassword||ADMIN_PASS)){
+    $("albumPasswordError").textContent="Senha incorreta. Acesso somente para o administrador.";
+    return;
+  }
+  const i=Number(modal.dataset.photoIndex);
+  const action=modal.dataset.action;
+  modal.classList.remove("open");
+  $("albumPassword").value="";
+  if(action==='view') openAlbumViewer(i);
+  else await downloadAlbumPhoto(i);
+}
+
+function openAlbumViewer(i){
+  const p=state.photos[i];
+  if(!p||!p.data)return;
+  $("albumViewerImage").src=p.data;
+  $("albumViewerTitle").textContent=`Foto ${i+1}`;
+  $("albumViewer").classList.add("open");
+}
+function closeAlbumViewer(){
+  $("albumViewer").classList.remove("open");
+  $("albumViewerImage").src="";
+}
+window.downloadAlbumPhoto=async i=>{
+  const p=state.photos[i];
+  if(!p||!p.data)return;
+  try{
+    let blob;
+    if(String(p.data).startsWith('data:')){
+      const r=await fetch(p.data);
+      blob=await r.blob();
+    }else{
+      const r=await fetch(p.data,{mode:'cors'});
+      if(!r.ok)throw new Error('Falha ao obter a imagem');
+      blob=await r.blob();
+    }
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=`foto_${String(i+1).padStart(3,"0")}.jpg`;
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    toast("Download iniciado.");
+  }catch(e){
+    console.error("Erro no download:",e);
+    toast("Não foi possível baixar a foto. Verifique o acesso ao armazenamento.");
+  }
+};
+window.removeFrame=async i=>{
+  const removed=state.frames[i];
+  if(!removed)return;
+  if(!confirm(`Excluir a moldura "${removed.name||"Moldura"}"?`))return;
+  try{
+    // Remove do banco/storage primeiro quando o Supabase estiver conectado.
+    // Depois removemos da lista local para que desapareça imediatamente do painel.
+    if(sb && removed.path){
+      const dbDel=await sb.from("frames").delete().eq("path",removed.path);
+      if(dbDel.error)throw dbDel.error;
+      const storageDel=await sb.storage.from("frames").remove([removed.path]);
+      if(storageDel.error)throw storageDel.error;
+    }
+    state.frames.splice(i,1);
+    if(state.activeFrame && removed && String(state.activeFrame.id)===String(removed.id)) state.activeFrame=null;
+    saveLocal();
+    applyTheme();
+    await syncAdminConfigToSupabase();
+    toast(sb?"Moldura excluída do painel e do banco.":"Moldura excluída.");
+  }catch(e){
+    console.error("Erro ao excluir moldura:",e);
+    toast("Não foi possível excluir a moldura: "+e.message);
+    // Recarrega a lista remota para não deixar a interface divergente do banco.
+    if(sb){try{await loadFramesFromSupabase();applyTheme()}catch(_){} }
+  }
+}
+window.removePhoto=async i=>{
+  const removed=state.photos[i];
+  if(!removed)return;
+  if(!confirm("Excluir esta foto?"))return;
+  try{
+    if(sb && removed.id){
+      const path=String(removed.id);
+      const dbDel=await sb.from("photos").delete().eq("path",path);
+      if(dbDel.error)throw dbDel.error;
+      const storageDel=await sb.storage.from("photos").remove([path]);
+      if(storageDel.error)throw storageDel.error;
+    }
+    state.photos.splice(i,1);
+    if(slideIndex>=state.photos.length)slideIndex=0;
+    saveLocal();
+    applyTheme();
+    renderAlbum();
+    toast(sb?"Foto excluída do painel e do banco.":"Foto excluída.");
+  }catch(e){
+    console.error("Erro ao excluir foto:",e);
+    toast("Não foi possível excluir a foto: "+e.message);
+    if(sb){try{await loadPhotosFromSupabase();applyTheme()}catch(_){} }
+  }
+}
+$("clearPhotos").onclick=()=>{if(confirm("Apagar todas as fotos?")){state.photos=[];saveLocal();applyTheme();renderAlbum();toast("Fotos apagadas.")}}
+$("cancelAlbumPassword").onclick=()=>$("albumPasswordModal").classList.remove("open");
+$("confirmAlbumPassword").onclick=confirmAlbumAccess;
+$("albumPasswordModal").addEventListener("click",e=>{if(e.target===$("albumPasswordModal"))$("albumPasswordModal").classList.remove("open")});
+$("refreshAlbum").onclick=async()=>{try{if(sb)await loadPhotosFromSupabase();saveLocal();applyTheme();renderAlbum();toast("Álbum atualizado.")}catch(e){console.error(e);toast("Não foi possível atualizar o álbum.")}}
+
+function renderTextEditors(){
+  $("textEditors").innerHTML=(state.theme.texts||[]).map((x,i)=>`<div class="text-editor">
+    <div class="row"><b>Texto ${i+1}</b><button class="btn-red" style="padding:6px" onclick="removeText(${i})">Remover</button></div>
+    <label>Texto</label><input class="tx" data-i="${i}" value="${String(x.text||"").replace(/"/g,"&quot;")}">
+    <div class="grid2"><div><label>Tamanho</label><input class="ts" data-i="${i}" type="number" value="${x.size||28}"></div><div><label>Cor</label><input class="tc" data-i="${i}" type="color" value="${x.color||"#ffffff"}"></div></div>
+    <div class="grid2"><div><label>Fonte</label><select class="tf" data-i="${i}">${["Arial","Georgia","Verdana","Trebuchet MS","Courier New"].map(f=>`<option ${f===(x.font||"Arial")?"selected":""}>${f}</option>`).join("")}</select></div>
+    <div><label>Posição</label><select class="tp" data-i="${i}">${Object.entries(POS).map(([k,v])=>`<option value="${k}" ${k===(x.pos||"bc")?"selected":""}>${v}</option>`).join("")}</select></div></div>
+  </div>`).join("")
+}
+window.removeText=async i=>{state.theme.texts.splice(i,1);await saveAdminConfigGlobally("Texto removido e painel atualizado.")}
+$("newText").onclick=async()=>{state.theme.texts.push({text:"Novo texto",size:28,color:"#ffffff",font:"Arial",pos:"bc"});await saveAdminConfigGlobally("Novo texto salvo e painel atualizado.")}
+
+function allowed(){return state.guest||admin}
+function waitForVideoReady(){
+  return new Promise((resolve,reject)=>{
+    const v=$("video");
+    const ready=()=>!!(v.readyState>=2 && v.videoWidth>0 && v.videoHeight>0);
+    if(ready())return resolve(true);
+    let done=false;
+    const finish=(ok,err)=>{
+      if(done)return; done=true; clearTimeout(timeout);
+      v.removeEventListener("loadedmetadata",onReady);
+      v.removeEventListener("loadeddata",onReady);
+      v.removeEventListener("canplay",onReady);
+      ok?resolve(true):reject(err||new Error("A câmera ainda não está pronta."));
+    };
+    const onReady=async()=>{
+      try{await v.play();}catch(e){}
+      if(ready())finish(true);
+    };
+    const timeout=setTimeout(()=>finish(false,new Error("A câmera demorou para iniciar.")),8000);
+    v.addEventListener("loadedmetadata",onReady);
+    v.addEventListener("loadeddata",onReady);
+    v.addEventListener("canplay",onReady);
+  });
+}
+async function openCamera(silent=false){
+  if(!allowed()){ $("unlockModal").classList.add("open"); return false; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    toast("A câmera não está disponível aqui. Abra o site em HTTPS e permita a câmera.");
+    return false;
+  }
+  try{
+    const v=$("video");
+    if(!stream){
+      stream=await navigator.mediaDevices.getUserMedia({
+        video:{facingMode:{ideal:"environment"},width:{ideal:1920},height:{ideal:1080}},
+        audio:false
+      });
+      v.srcObject=stream;
+    }
+    await v.play().catch(()=>{});
+    await waitForVideoReady();
+    if(!silent)toast("Câmera pronta.");
+    return true;
+  }catch(e){
+    console.error("Erro da câmera:",e);
+    if(stream){stream.getTracks().forEach(t=>t.stop());}
+    stream=null;
+    $("video").srcObject=null;
+    toast("Não foi possível abrir a câmera. Verifique a permissão do navegador.");
+    return false;
+  }
+}
+$("startCamera").onclick=()=>openCamera(false);
+
+async function capturePhoto(){
+  if(!allowed()){ $("unlockModal").classList.add("open"); return; }
+  const ready=await openCamera(true);
+  if(!ready)return;
+  const v=$("video");
+  try{
+    await v.play().catch(()=>{});
+    if(v.requestVideoFrameCallback){
+      await new Promise(resolve=>v.requestVideoFrameCallback(()=>resolve()));
+    }else{
+      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    }
+    if(!v.videoWidth || !v.videoHeight)throw new Error("A câmera não entregou um quadro de vídeo.");
+    const c=document.createElement("canvas");
+    c.width=v.videoWidth; c.height=v.videoHeight;
+    const ctx=c.getContext("2d",{alpha:false});
+    ctx.drawImage(v,0,0,c.width,c.height);
+    photo=c.toDataURL("image/jpeg",0.92);
+    if(!photo || photo.length<1000)throw new Error("A foto ficou vazia.");
+    showPhoto();
+    toast("Foto tirada! Confira a foto e clique em SALVAR FOTO.");
+  }catch(e){
+    console.error("Erro ao fotografar:",e);
+    toast("Não foi possível tirar a foto. Aguarde a imagem da câmera aparecer e tente novamente.");
+  }
+}
+$("galleryBtn").onclick=()=>{
+  if(!allowed())return $("unlockModal").classList.add("open");
+  $("photoFile").value="";
+  if($("photoFile").showPicker){
+    try{$("photoFile").showPicker();return;}catch(e){}
+  }
+  $("photoFile").click();
+};
+$("shotBtn").onclick=capturePhoto;
+$("photoFile").onchange=async e=>{
+  const file=e.target.files&&e.target.files[0];
+  if(!file)return;
+  try{
+    photo=await fileData(file);
+    showPhoto();
+    toast("Foto carregada! Confira a foto e clique em SALVAR FOTO.");
+  }catch(err){
+    console.error(err);
+    toast("Não foi possível carregar esta foto.");
+  }
+};
+function showPhoto(){
+  $("photoCard").classList.remove("hidden");
+  $("photoPreview").src=photo;
+  $("photoPreview").style.transform="none";
+  $("photoPreview").style.objectFit="contain";
+  $("preview").style.aspectRatio="4/3";
+  $("preview").classList.remove("hidden");
+  toast("Foto pronta. Clique em SALVAR FOTO.");
+}
+
+$("retryBtn").onclick=()=>{
+  $("photoCard").classList.add("hidden");
+  $("preview").classList.add("hidden");
+  $("photoPreview").src="";
+  photo=null;
+  $("photoFile").value="";
+};
+
+async function makeFinal(){
+  if(!photo)throw new Error("Nenhuma foto selecionada.");
+  return photo;
+}
+$("saveBtn").onclick=async()=>{
+  if(!photo)return toast("Tire uma foto primeiro.");
+  try{
+    $("saveBtn").disabled=true;
+    const data=await makeFinal();
+    if(sb){
+      await syncPhotoToSupabase(data);
+      await loadPhotosFromSupabase();
+    }else{
+      state.photos.unshift({id:Date.now(),data,created:new Date().toISOString()});
+    }
+    saveLocal();photo=null;$("photoCard").classList.add("hidden");applyTheme();
+    toast(sb?"FOTO SALVA NO BANCO COM SUCESSO!":"FOTO SALVA LOCALMENTE.");
+  }catch(e){
+    console.error(e);
+    toast("Não foi possível salvar no banco: "+e.message);
+  }finally{$("saveBtn").disabled=false}
+}
+
+async function syncPhotoToSupabase(data){
+  if(!sb)return null;
+  const blob=await (await fetch(data)).blob();
+  const path="foto_"+Date.now()+"_"+Math.random().toString(36).slice(2)+".jpg";
+  const up=await sb.storage.from("photos").upload(path,blob,{contentType:"image/jpeg"});
+  if(up.error)throw up.error;
+  const url=sb.storage.from("photos").getPublicUrl(path).data.publicUrl;
+  const ins=await sb.from("photos").insert({path,url});
+  if(ins.error)throw ins.error;
+  return {path,url};
+}
+async function loadPhotosFromSupabase(){
+  if(!sb)return;
+  const r=await sb.from("photos").select("path,url").order("created_at",{ascending:false});
+  if(r.error)throw r.error;
+  state.photos=(r.data||[]).filter(x=>x.url).map((x,i)=>({id:x.path||i,data:x.url,created:new Date().toISOString()}));
+}
+async function loadFramesFromSupabase(){
+  if(!sb)return;
+  const r=await sb.from("frames").select("name,path,url").order("created_at",{ascending:false});
+  if(r.error)throw r.error;
+  const rows=(r.data||[]).filter(x=>x.path);
+  const loaded=[];
+  for(let i=0;i<rows.length;i++){
+    const row=rows[i];
+    try{
+      const d=await sb.storage.from("frames").download(row.path);
+      if(d.error)throw d.error;
+      const file=new File([d.data],row.name||"moldura.png",{type:d.data.type||"image/png"});
+      const data=await fileData(file);
+      loaded.push({id:row.path||i,name:row.name||"Moldura",data,path:row.path,url:row.url});
+    }catch(e){
+      console.warn("Não foi possível baixar a moldura "+row.path,e);
+      if(row.url)loaded.push({id:row.path||i,name:row.name||"Moldura",data:row.url,path:row.path,url:row.url,remoteOnly:true});
+    }
+  }
+  state.frames=loaded;
+}
+async function syncAdminConfigToSupabase(){
+  if(!sb)return false;
+  const config={
+    guest:!!state.guest,
+    interval:Math.max(1,+state.interval||5),
+    activeFrame:state.activeFrame?{
+      id:state.activeFrame.id,
+      name:state.activeFrame.name||"Moldura",
+      path:state.activeFrame.path||null,
+      url:state.activeFrame.url||null
+    }:null,
+    theme:state.theme||{},
+    music:state.music||null,
+    albumPassword:state.albumPassword||ADMIN_PASS,
+    updatedAt:new Date().toISOString()
+  };
+  const blob=new Blob([JSON.stringify(config)],{type:"application/json"});
+  const up=await sb.storage.from(CONFIG_BUCKET).upload(CONFIG_PATH,blob,{contentType:"application/json",upsert:true,cacheControl:"0"});
+  if(up.error)throw up.error;
+  return true;
+}
+
+async function saveAdminConfigGlobally(message){
+  saveLocal();
+  applyTheme();
+  if(!sb){
+    toast("Supabase não conectado: alteração salva somente neste aparelho.");
+    return false;
+  }
+  try{
+    await syncAdminConfigToSupabase();
+    toast(message||"Configuração salva para todos os aparelhos.");
+    return true;
+  }catch(e){
+    console.error("Erro ao sincronizar configuração global:",e);
+    toast("Erro ao salvar para todos os aparelhos. Verifique as 3 permissões do bucket theme.");
+    return false;
+  }
+}
+
+async function loadAdminConfigFromSupabase(){
+  if(!sb)return false;
+  const r=await sb.storage.from(CONFIG_BUCKET).download(CONFIG_PATH);
+  if(r.error)return false;
+  try{
+    const text=await r.data.text();
+    const remote=JSON.parse(text);
+    remoteConfigStamp=remote.updatedAt||text;
+    if(typeof remote.guest!=="undefined")state.guest=!!remote.guest;
+    if(typeof remote.interval!=="undefined")state.interval=Math.max(1,+remote.interval||5);
+    if(remote.theme)state.theme={...(state.theme||{}),...remote.theme};
+    if(typeof remote.music!=="undefined")state.music=remote.music||null;
+    if(typeof remote.albumPassword!=="undefined")state.albumPassword=String(remote.albumPassword||"");
+    state.activeFrame=remote.activeFrame||null;
+    return true;
+  }catch(e){
+    console.warn("Configuração remota inválida:",e);
+    return false;
+  }
+}
+
+async function refreshAdminConfigFromSupabase(){
+  if(!sb)return false;
+  try{
+    const r=await sb.storage.from(CONFIG_BUCKET).download(CONFIG_PATH);
+    if(r.error)return false;
+    const text=await r.data.text();
+    const remote=JSON.parse(text);
+    const stamp=remote.updatedAt||text;
+    if(stamp===remoteConfigStamp)return false;
+    remoteConfigStamp=stamp;
+    if(typeof remote.guest!=="undefined")state.guest=!!remote.guest;
+    if(typeof remote.interval!=="undefined")state.interval=Math.max(1,+remote.interval||5);
+    if(remote.theme)state.theme={...(state.theme||{}),...remote.theme};
+    if(typeof remote.music!=="undefined")state.music=remote.music||null;
+    if(typeof remote.albumPassword!=="undefined")state.albumPassword=String(remote.albumPassword||"");
+    state.activeFrame=remote.activeFrame||null;
+    resolveActiveFrame();
+    saveLocal();
+    applyTheme();
+    $("audio").src=state.music||"";
+    updateMusicButton();
+    return true;
+  }catch(e){
+    console.warn("Não foi possível atualizar a configuração remota:",e);
+    return false;
+  }
+}
+
+function resolveActiveFrame(){
+  if(!state.activeFrame){return;}
+  const found=state.frames.find(f=>String(f.id)===String(state.activeFrame.id));
+  if(found){
+    state.activeFrame={id:found.id,name:found.name,data:found.data,path:found.path||null,url:found.url||null};
+  }else if(state.activeFrame.url||state.activeFrame.path){
+    // Mantém a referência remota até a lista de molduras ser atualizada.
+    state.activeFrame={...state.activeFrame};
+  }else{
+    state.activeFrame=null;
+  }
+}
+
+async function syncMusicToSupabase(data,file){
+  if(!sb)return null;
+  const blob=await (await fetch(data)).blob();
+  const ext=(file.name.split(".").pop()||"mp3").replace(/[^a-z0-9]/gi,"").toLowerCase()||"mp3";
+  const path="musica/evento."+ext;
+  const up=await sb.storage.from("music").upload(path,blob,{contentType:file.type||"audio/mpeg",upsert:true});
+  if(up.error)throw up.error;
+  return sb.storage.from("music").getPublicUrl(path).data.publicUrl;
+}
+async function loadMusicFromSupabase(){
+  if(!sb)return;
+  const r=await sb.storage.from("music").list("musica",{limit:20,sortBy:{column:"updated_at",order:"desc"}});
+  if(r.error||!r.data?.length)return;
+  const file=r.data[0];
+  state.music=sb.storage.from("music").getPublicUrl("musica/"+file.name).data.publicUrl;
+}
+$("toggleGuest").onclick=async()=>{
+ if(!admin)return $("loginModal").classList.add("open");
+ state.guest=!state.guest;
+ await saveAdminConfigGlobally(state.guest?"Convidados liberados para todos.":"Convidados bloqueados para todos.");
+}
+$("saveAlbumPassword").onclick=async()=>{
+  if(!admin)return $("loginModal").classList.add("open");
+  const value=$("albumPassConfig").value.trim();
+  if(value.length<4)return toast("A senha do álbum deve ter pelo menos 4 caracteres.");
+  state.albumPassword=value;
+  await saveAdminConfigGlobally("Senha do álbum salva para todos os aparelhos.");
+  $("albumPassConfig").value="";
+};
+$("connectSb").onclick=async()=>{
+ const url=$("sbUrl").value.trim()||SUPABASE_URL,key=$("sbKey").value.trim()||SUPABASE_ANON_KEY;if(!url||!key)return toast("Preencha URL e Anon Key.");
+ try{
+  if(!window.supabase){await loadSupabase()}
+  sb=window.supabase.createClient(url,key);localStorage.setItem("SB_URL",url);localStorage.setItem("SB_KEY",key);$("sbState").textContent="Supabase conectado.";toast("Supabase conectado.");
+ }catch(e){$("sbState").textContent=e.message;toast("Não foi possível conectar.")}
+}
+function loadSupabase(){
+ return new Promise((resolve,reject)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})
+}
+$("addFrames").onclick=async()=>{
+  const files=[...$("framesUpload").files||[]];
+  if(!files.length)return toast("Escolha pelo menos uma moldura.");
+  try{
+    for(const f of files){
+      const data=await fileData(f);
+      if(sb){
+        const ext=(f.name.split(".").pop()||"png").replace(/[^a-z0-9]/gi,"").toLowerCase()||"png";
+        const path="moldura_"+Date.now()+"_"+Math.random().toString(36).slice(2)+"."+ext;
+        const blob=await (await fetch(data)).blob();
+        const up=await sb.storage.from("frames").upload(path,blob,{contentType:f.type||"image/png",upsert:false});
+        if(up.error)throw up.error;
+        const url=sb.storage.from("frames").getPublicUrl(path).data.publicUrl;
+        const ins=await sb.from("frames").insert({name:f.name,path,url});
+        if(ins.error)throw ins.error;
+        state.frames.push({id:path,name:f.name,data,url,path});
+      }else{
+        state.frames.push({id:Date.now()+Math.random(),name:f.name,data});
+      }
+    }
+    saveLocal();renderAdminFrames();
+    await syncAdminConfigToSupabase();
+    $("framesUpload").value="";
+    toast(sb?"Molduras salvas para todos os aparelhos.":"Molduras salvas neste aparelho.");
+  }catch(e){
+    console.error(e);toast("Erro ao salvar moldura: "+e.message);
+  }
+}
+
+$("musicBtn").onclick=async()=>{
+ const f=$("musicFile").files[0];if(!f)return toast("Escolha uma música.");
+ try{
+   const data=await fileData(f);
+   if(sb){
+     state.music=await syncMusicToSupabase(data,f);
+     if(!state.music)throw new Error("Supabase não conectado.");
+   }else{
+     state.music=data;
+   }
+   saveLocal();$("audio").src=state.music;updateMusicButton();
+   if(sb)await syncAdminConfigToSupabase();
+   toast(sb?"Música salva no Supabase.":"Música salva neste navegador.");
+ }catch(e){console.error(e);toast("Erro ao salvar música: "+e.message)}
+}
+$("deleteMusicBtn").onclick=async()=>{
+ if(!state.music)return toast("Não há música para excluir.");
+ if(!confirm("Excluir a música do álbum?"))return;
+ try{
+   if(sb){
+     const r=await sb.storage.from("music").list("musica",{limit:100});
+     if(r.error)throw r.error;
+     const paths=(r.data||[]).map(file=>"musica/"+file.name);
+     if(paths.length){
+       const del=await sb.storage.from("music").remove(paths);
+       if(del.error)throw del.error;
+     }
+     state.music=null;
+     await syncAdminConfigToSupabase();
+   }else{
+     state.music=null;
+     saveLocal();
+   }
+   const audio=$("audio");
+   audio.pause();
+   audio.removeAttribute("src");
+   audio.load();
+   updateMusicButton();
+   $("musicFile").value="";
+   toast("Música excluída.");
+ }catch(e){
+   console.error(e);
+   toast("Erro ao excluir música: "+e.message);
+ }
+}
+$("saveTheme").onclick=async()=>{
+ const bg=$("bgFile").files[0],logo=$("logoFile").files[0],logoTop=$("logoTopFile").files[0],logoBottom=$("logoBottomFile").files[0],favicon=$("faviconFile").files[0],socialImage=$("socialImageFile").files[0];
+ if(bg)state.theme.bg=await fileData(bg);
+ if(logo)state.theme.logo=await fileData(logo);
+ if(logoTop)state.theme.logoTop=await fileData(logoTop);
+ if(logoBottom)state.theme.logoBottom=await fileData(logoBottom);
+ if(sb && favicon){
+   state.theme.favicon=await uploadThemeAsset(favicon,"config/favicon");
+ }else if(favicon){
+   state.theme.favicon=await fileData(favicon);
+ }
+ if(sb && socialImage){
+   state.theme.socialImage=await uploadThemeAsset(socialImage,"config/social-preview");
+ }else if(socialImage){
+   state.theme.socialImage=await fileData(socialImage);
+ }
+ state.interval=Math.max(1,+$("interval").value||5);
+ Object.assign(state.theme,{primary:$("primary").value,accent:$("accent").value,title:$("title").value,metaTitle:$("metaTitle").value.trim()||$("title").value||"Foto Evento",metaDescription:$("metaDescription").value.trim(),titleSize:Math.max(10,Math.min(120,+$("titleSize").value||36)),brandLogoSize:Math.max(20,Math.min(180,+$("brandLogoSize").value||38)),logoTopSize:Math.max(20,Math.min(180,+$("logoTopSize").value||38)),logoBottomSize:Math.max(20,Math.min(180,+$("logoBottomSize").value||38)),logoTopPos:$("logoTopPos").value,logoBottomPos:$("logoBottomPos").value,logoMode:$("logoMode").value,font:$("font").value,titleColor:$("titleColor").value,titlePos:$("titlePos").value});
+ state.theme.texts=[...document.querySelectorAll(".tx")].map((e,i)=>({text:e.value,size:+document.querySelector(`.ts[data-i="${i}"]`).value,color:document.querySelector(`.tc[data-i="${i}"]`).value,font:document.querySelector(`.tf[data-i="${i}"]`).value,pos:document.querySelector(`.tp[data-i="${i}"]`).value}));
+ await saveAdminConfigGlobally(sb ? "Tema, miniatura, ícone, título e textos salvos no Supabase." : "Tema salvo neste aparelho. Conecte o Supabase para a miniatura funcionar nas redes sociais.");
+}
+/* =========================================================
+   MÚSICA DO PAINEL
+   Navegadores modernos bloqueiam áudio com som sem interação
+   do usuário. O sistema tenta autoplay; se o navegador bloquear,
+   o primeiro toque/clique inicia e libera o som.
+   ========================================================= */
+let musicMuted=false;
+let musicStarted=false;
+
+function hasMusic(){
+  return !!state.music;
+}
+
+function updateMusicButton(){
+  const b=$("musicToggle");
+  if(!b)return;
+  if(!hasMusic()){
+    b.style.display="none";
+    return;
+  }
+  b.style.display="block";
+  b.textContent=musicMuted?"🔇":"🔊";
+  b.title=musicMuted?"Ativar música":"Silenciar música";
+  b.setAttribute("aria-label",musicMuted?"Ativar música":"Silenciar música");
+}
+
+async function startMusic(forceSound=true){
+  if(!hasMusic())return false;
+  const a=$("audio");
+  if(a.src!==state.music)a.src=state.music;
+  a.loop=true;
+  a.preload="auto";
+  a.muted=!forceSound || musicMuted;
+  try{
+    await a.play();
+    musicStarted=true;
+    $("musicHint").style.display="none";
+    updateMusicButton();
+    return true;
+  }catch(err){
+    /* Autoplay com som foi bloqueado pelo navegador. */
+    a.muted=true;
+    try{
+      await a.play();
+      musicStarted=true;
+      $("musicHint").style.display="block";
+      updateMusicButton();
+      return false;
+    }catch(e){
+      $("musicHint").style.display="block";
+      updateMusicButton();
+      return false;
+    }
+  }
+}
+
+function unlockMusicAfterInteraction(){
+  if(!hasMusic())return;
+  const a=$("audio");
+  if(!musicStarted){
+    startMusic(true);
+    return;
+  }
+  if(!musicMuted && a.muted){
+    a.muted=false;
+    a.play().catch(()=>{});
+  }
+}
+
+$("musicToggle").onclick=(e)=>{
+  e.stopPropagation();
+  if(!hasMusic())return;
+  const a=$("audio");
+  musicMuted=!musicMuted;
+  a.muted=musicMuted;
+  if(!musicMuted){
+    a.play().catch(()=>{});
+  }
+  updateMusicButton();
+};
+
+["pointerdown","touchstart","keydown"].forEach(ev=>{
+  document.addEventListener(ev,unlockMusicAfterInteraction,{passive:true});
+});
+
+$("stage").addEventListener("click",(e)=>{
+  if(e.target===$("musicToggle"))return;
+  unlockMusicAfterInteraction();
+});
+
+/* Tenta iniciar automaticamente ao abrir o painel. */
+setTimeout(()=>{
+  updateMusicButton();
+  startMusic(true);
+},350);
+
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=async()=>{
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));$(b.dataset.v).classList.add("active");
+ if(b.dataset.v==="cameraView" && allowed()) await openCamera(true);
+ if(b.dataset.v==="albumView"){ if(sb){try{await loadPhotosFromSupabase();saveLocal();applyTheme();}catch(e){console.warn("Falha ao atualizar álbum:",e)}} renderAlbum(); }
+});
+$("loginBtn").onclick=()=>$("loginModal").classList.add("open");
+$("cancelLogin").onclick=()=>$("loginModal").classList.remove("open");
+function syncAdminFields(){
+  const t=state.theme||{};
+  $("albumPassConfig").value=state.albumPassword||ADMIN_PASS;
+  $("metaTitle").value=t.metaTitle||t.title||"Foto Evento";
+  $("metaDescription").value=t.metaDescription||"";
+}
+$("doLogin").onclick=()=>{if($("user").value.toUpperCase()===ADMIN_USER&&$("pass").value===ADMIN_PASS){admin=true;$("loginModal").classList.remove("open");$("adminPanel").classList.remove("hidden");syncAdminFields();setBadge();toast("Administrador conectado.")}else toast("Usuário ou senha inválidos.")};
+$("cancelUnlock").onclick=()=>$("unlockModal").classList.remove("open");
+$("doUnlock").onclick=()=>{if($("unlock").value===UNLOCK_PASS){state.guest=true;saveLocal();$("unlockModal").classList.remove("open");setBadge();openCamera()}else toast("Senha incorreta.")};
+
+(async function init(){
+ $("sbUrl").value=SUPABASE_URL;
+ $("sbKey").value=SUPABASE_ANON_KEY;
+ localStorage.setItem("SB_URL",SUPABASE_URL);
+ localStorage.setItem("SB_KEY",SUPABASE_ANON_KEY);
+ $("audio").src=state.music||"";
+ $("audio").loop=true;
+ updateMusicButton();
+ applyTheme();syncAdminFields();setBadge();
+
+ try{
+   await loadSupabase();
+   sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+   $("sbState").textContent="Supabase configurado automaticamente.";
+   try{
+     const remoteConfigLoaded=await loadAdminConfigFromSupabase();
+     await loadPhotosFromSupabase();
+     await loadFramesFromSupabase();
+     resolveActiveFrame();
+     if(!remoteConfigLoaded)await loadMusicFromSupabase();
+     saveLocal();applyTheme();syncAdminFields();$("audio").src=state.music||"";updateMusicButton();
+   }catch(dbErr){
+     console.error("Falha ao carregar dados do Supabase:",dbErr);
+     $("sbState").textContent="Supabase conectado, mas houve erro ao carregar dados: "+dbErr.message;
+   }
+ }catch(e){
+   $("sbState").textContent="Supabase aguardando conexão: "+e.message;
+   console.warn(e);
+ }
+
+ if(sb){
+   clearInterval(remoteConfigTimer);
+   remoteConfigTimer=setInterval(()=>refreshAdminConfigFromSupabase(),2000);
+ }
+
+ if(location.protocol==="file:"){
+   console.log("Modo arquivo local: câmera pode ser bloqueada pelo navegador. Use Galeria ou hospede em HTTPS.");
+ }
+})();
+</script>
+</body>
+</html>
